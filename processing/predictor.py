@@ -40,7 +40,7 @@ def get_boxes(model, vid_path: str, toi: tuple) -> dict:
         _, image = cap.read()
         if image is None:
             break
-        if(count >= toi[0] and count <= toi[1]):
+        if toi[0] <= count <= toi[1]:
             results = model.predict(source=image, save=True, conf=conf_threshold)
             # Create boxes dictionary
             for i, box in enumerate(results[0].boxes.xyxy):  # For every box
